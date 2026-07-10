@@ -1,9 +1,8 @@
-#  VerseSage
+# VerseSage
 
 ### AI-powered Cross-Scripture Wisdom Engine
 
 *Bridging India's timeless spiritual wisdom with modern Artificial Intelligence using Google Gemma-4-E4B.*
-
 
 [![Google Gemma-4-E4B](https://img.shields.io/badge/Google-Gemma--4--E4B-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/gemma)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
@@ -16,32 +15,36 @@
 
 
 
-**VerseSage** uses semantic search and Retrieval-Augmented Generation (RAG) to let anyone ask natural-language questions across six major Indian scriptures — and receive citation-backed, comparative answers powered by **Google Gemma-4-E4B**.
+**VerseSage** uses semantic search and Retrieval-Augmented Generation (RAG) to let anyone ask natural-language questions across Indian scriptures — and receive citation-backed, comparative answers powered by **Google Gemma-4-E4B**. The current release supports the **Bhagavad Gita** and **Thirukkural**, with more scriptures coming soon.
 
 
-##  Overview
+[Overview](#-overview) · [Features](#-features) · [Scriptures](#-supported-scriptures) · [Architecture](#-system-architecture) · [Installation](#-installation) · [Usage](#-usage) · [Roadmap](#-future-roadmap) · [Contributing](#-contributing)
 
-India's spiritual and philosophical heritage spans thousands of years and encompasses millions of verses across dozens of sacred texts — from the Bhagavad Gita and the Upanishads to the Guru Granth Sahib and the Thirukkural. These scriptures hold profound wisdom on ethics, consciousness, duty, compassion, and the nature of existence.
+---
+
+## Overview
+
+India's spiritual and philosophical heritage spans thousands of years and encompasses millions of verses across dozens of sacred texts — from the Bhagavad Gita to the Thirukkural. These scriptures hold profound wisdom on ethics, consciousness, duty, compassion, and the nature of existence.
 
 Yet accessing this wisdom remains surprisingly difficult:
 
 - **Traditional search is keyword-based.** Searching for "forgiveness" will miss verses that discuss *kshama*, *daya*, or *karuna* — words that carry the same meaning in different scriptural contexts.
-- **Scriptures live in silos.** A student of the Bhagavad Gita rarely encounters the Dhammapada's parallel teachings on the same topic, and vice versa.
+- **Scriptures live in silos.** A student of the Bhagavad Gita rarely encounters the Thirukkural's parallel teachings on the same topic, and vice versa.
 - **AI can hallucinate.** General-purpose language models may fabricate verses, misattribute quotes, or invent scripture references that do not exist.
 
-**VerseSage** solves these problems by combining:
+**VerseSage** currently enables comparative reasoning between the **Bhagavad Gita** and the **Thirukkural**, with a modular architecture designed to support additional scriptures in future releases. It solves these problems by combining:
 
 1. **Semantic search** — understanding the *meaning* behind a question, not just its keywords.
 2. **Cross-scripture retrieval** — pulling relevant verses from multiple traditions simultaneously.
 3. **Retrieval-Augmented Generation (RAG)** — grounding every AI response in real, retrieved passages so that nothing is fabricated.
-4. **Comparative reasoning** — using Google Gemma-4-E4B to synthesize insights across scriptures and highlight convergences and divergences.
+4. **Comparative reasoning** — using Google Gemma-4-E4B to synthesize insights across the Bhagavad Gita and Thirukkural, highlighting convergences and divergences.
 5. **Citation-backed answers** — every claim in the response is traceable to a specific verse, chapter, and scripture.
 
-The result is an AI system that is **accurate**, **transparent**, **multi-traditional**, and **trustworthy** — one that treats India's spiritual texts with the scholarly rigor they deserve.
+The result is an AI system that is **accurate**, **transparent**, **cross-traditional**, and **trustworthy** — one that treats India's spiritual texts with the scholarly rigor they deserve.
 
 ---
 
-##  Problem Statement
+## Problem Statement
 
 | # | Problem | Impact |
 |---|---------|--------|
@@ -55,7 +58,7 @@ The result is an AI system that is **accurate**, **transparent**, **multi-tradit
 
 ---
 
-##  Solution
+## Solution
 
 VerseSage implements a complete **Retrieval-Augmented Generation (RAG)** pipeline that transforms a user's natural-language question into a grounded, citation-backed, cross-scripture response:
 
@@ -92,35 +95,33 @@ VerseSage implements a complete **Retrieval-Augmented Generation (RAG)** pipelin
 | Feature | Description |
 |---------|-------------|
 |  **Semantic Scripture Search** | Understands the *meaning* of your question, not just keywords — surfaces conceptually relevant verses across traditions |
-| **Cross-Scripture Comparison** | Retrieves and compares teachings from the Bhagavad Gita, Upanishads, Ramayana, Guru Granth Sahib, Dhammapada, and Thirukkural in a single response |
-| **Google Gemma-4-E4B Reasoning** | Leverages Google's state-of-the-art language model for nuanced philosophical reasoning and synthesis |
-| **Retrieval-Augmented Generation** | Grounds every response in real, retrieved scripture passages — eliminates hallucination |
-| **Citation-Backed Answers** | Every claim is traceable to a specific verse, chapter, and scripture — fully auditable |
-| **ChromaDB Vector Search** | High-performance vector similarity search for sub-second retrieval across thousands of verses |
-| **Metadata-Aware Retrieval** | Filters and ranks results using scripture name, chapter, verse number, language, and thematic tags |
-| **Gradio Interface** | Clean, intuitive web UI accessible from any browser — no installation required for end users |
-| **Modular Architecture** | Cleanly separated components (data, embeddings, vector DB, LLM, pipeline) for easy extension and maintenance |
-| **Fast Retrieval** | Optimized vector indexing delivers relevant verses in milliseconds |
-| **Future Multilingual Support** | Architecture designed to support Hindi, Tamil, Punjabi, Pali, and other Indian languages |
+|  **Cross-Scripture Comparison** | Retrieves and compares teachings from the Bhagavad Gita and Thirukkural in a single response, with more scriptures planned for future releases |
+|  **Google Gemma-4-E4B Reasoning** | Leverages Google's state-of-the-art language model for nuanced philosophical reasoning and synthesis |
+|  **Retrieval-Augmented Generation** | Grounds every response in real, retrieved scripture passages — eliminates hallucination |
+|  **Citation-Backed Answers** | Every claim is traceable to a specific verse, chapter, and scripture — fully auditable |
+|  **ChromaDB Vector Search** | High-performance vector similarity search for sub-second retrieval across thousands of verses |
+|  **Metadata-Aware Retrieval** | Filters and ranks results using scripture name, chapter, verse number, language, and thematic tags |
+|  **Gradio Interface** | Clean, intuitive web UI accessible from any browser — no installation required for end users |
+|  **Modular Architecture** | Cleanly separated components (data, embeddings, vector DB, LLM, pipeline) for easy extension and maintenance |
+|  **Fast Retrieval** | Optimized vector indexing delivers relevant verses in milliseconds |
+|  **Future Multilingual Support** | Architecture designed to support Hindi, Tamil, Punjabi, Pali, and other Indian languages |
 
 ---
 
 ## Supported Scriptures
 
+The current release of VerseSage supports the following scriptures:
+
 | Scripture | Language | Description | Significance |
 |-----------|----------|-------------|--------------|
 | **Bhagavad Gita** | Sanskrit | 700 verses of Lord Krishna's counsel to Arjuna on duty, righteousness, and the nature of the self | Central philosophical text of Hinduism; foundational to Indian ethics and metaphysics |
-| **Upanishads** | Sanskrit | Philosophical dialogues exploring Brahman, Atman, consciousness, and ultimate reality | The culmination of Vedic thought; the basis of Vedanta philosophy |
-| **Ramayana** | Sanskrit | Epic narrative of Lord Rama embodying dharma, devotion, and righteous governance | One of the two great Indian epics; a moral and cultural touchstone across South and Southeast Asia |
-| **Guru Granth Sahib** | Gurmukhi / Punjabi | Sacred scripture of Sikhism containing hymns by Sikh Gurus and saints from Hindu and Sufi traditions | A unique inter-faith scripture; the living Guru of the Sikh community |
-| **Dhammapada** | Pali | Collected sayings of the Buddha on mindfulness, compassion, impermanence, and the path to liberation | One of the most widely read Buddhist texts; accessible distillation of the Buddha's teachings |
 | **Thirukkural** | Tamil | 1,330 couplets by Thiruvalluvar on virtue, wealth, and love — a secular ethical masterpiece | A cornerstone of Tamil literature; often called the "universal scripture" for its non-sectarian wisdom |
 
-> **Why these six?** Together they represent Hinduism, Sikhism, Buddhism, and Tamil ethical philosophy — spanning Sanskrit, Gurmukhi, Pali, and Tamil — offering a broad, inclusive view of India's spiritual and philosophical landscape.
+> **Why these two?** The Bhagavad Gita and the Thirukkural represent two of India's most influential philosophical traditions — spanning Sanskrit and Tamil, Hindu philosophy and secular ethics — providing a strong foundation for cross-scripture comparative reasoning. The modular architecture is designed to incorporate additional scriptures (Upanishads, Ramayana, Guru Granth Sahib, Dhammapada, and more) in future releases.
 
 ---
 
-## Tech Stack
+##  Tech Stack
 
 | Layer | Technology | Role |
 |-------|-----------|------|
@@ -134,7 +135,7 @@ VerseSage implements a complete **Retrieval-Augmented Generation (RAG)** pipelin
 
 ---
 
-## 🏗 System Architecture
+## System Architecture
 
 ```
                             ┌──────────────────────┐
@@ -239,7 +240,7 @@ The user receives a well-structured answer that:
 
 ### Metadata Schema
 
-Every verse in the VerseSage knowledge base is stored with rich metadata to enable precise, filterable retrieval:
+The current vector database contains embeddings for the **Bhagavad Gita** and the **Thirukkural**. Every verse in the VerseSage knowledge base is stored with rich metadata to enable precise, filterable retrieval:
 
 ```json
 {
@@ -272,7 +273,7 @@ Every verse in the VerseSage knowledge base is stored with rich metadata to enab
 
 ---
 
-##  Why RAG?
+## Why RAG?
 
 Large Language Models are powerful, but they have a fundamental limitation: **they can hallucinate**. When asked about scripture, a general-purpose LLM might fabricate verses, misattribute quotes, or invent references that do not exist. For a system dealing with sacred texts, this is unacceptable.
 
@@ -392,33 +393,33 @@ The Gradio interface will launch at `http://localhost:7860`. Open this URL in yo
 ##  Usage
 
 1. **Open the application** — Navigate to `http://localhost:7860` in your browser (or visit the Hugging Face Spaces deployment).
-2. **Type your question** — Ask any question about Indian scriptures in natural language. No special syntax or keywords required.
+2. **Type your question** — Ask any question about the Bhagavad Gita, the Thirukkural, or comparative topics in natural language. No special syntax or keywords required.
 3. **Submit** — Click the submit button or press Enter.
-4. **Read the response** — VerseSage will return a comparative answer drawing from relevant scriptures, with each claim backed by specific verse citations.
-5. **Explore further** — Ask follow-up questions, compare specific scriptures, or dive deeper into a particular teaching.
+4. **Read the response** — VerseSage will return a comparative answer drawing from the Bhagavad Gita and the Thirukkural, with each claim backed by specific verse citations.
+5. **Explore further** — Ask follow-up questions, compare specific teachings, or dive deeper into a particular topic.
 
-> **Tip:** The more specific your question, the more focused and insightful the response. Instead of *"Tell me about karma"*, try *"How do the Bhagavad Gita and the Dhammapada differ in their understanding of karma?"*
+> **Tip:** The more specific your question, the more focused and insightful the response. Instead of *"Tell me about karma"*, try *"How do the Bhagavad Gita and the Thirukkural differ in their understanding of karma and duty?"*
 
 ---
 
 ##  Example Questions
 
-Here are meaningful questions you can ask VerseSage to explore India's cross-scripture wisdom:
+Here are meaningful questions you can ask VerseSage to explore cross-scripture wisdom from the Bhagavad Gita and the Thirukkural:
 
 | # | Question |
 |---|----------|
-| 1 | What do Indian scriptures say about controlling anger and cultivating patience? |
-| 2 | How do the Bhagavad Gita and the Dhammapada differ in their teachings on detachment? |
-| 3 | What is the concept of dharma in the Ramayana, and how does it compare to duty in the Guru Granth Sahib? |
-| 4 | What do the Upanishads say about the nature of the self (Atman) and ultimate reality (Brahman)? |
-| 5 | How does the Thirukkural define a virtuous life, and are there parallels in the Bhagavad Gita? |
-| 6 | What teachings on compassion are shared across the Dhammapada, Guru Granth Sahib, and Bhagavad Gita? |
-| 7 | What do Indian scriptures say about the importance of truthfulness and integrity? |
-| 8 | How is the concept of karma explained differently across the Bhagavad Gita, Dhammapada, and Thirukkural? |
-| 9 | What guidance do the Upanishads and the Guru Granth Sahib offer on meditation and inner peace? |
-| 10 | How do Indian scriptures address the relationship between wealth, ethics, and spiritual growth? |
-| 11 | What do the Ramayana and the Bhagavad Gita teach about leadership and righteous governance? |
-| 12 | How do different Indian traditions understand the concept of liberation or moksha? |
+| 1 | What do the Bhagavad Gita and the Thirukkural say about controlling anger and cultivating patience? |
+| 2 | How do the Bhagavad Gita and the Thirukkural differ in their teachings on detachment and renunciation? |
+| 3 | What is the concept of dharma in the Bhagavad Gita, and how does it compare to virtue in the Thirukkural? |
+| 4 | How does the Thirukkural define a virtuous life, and are there parallels in the Bhagavad Gita? |
+| 5 | What teachings on compassion and kindness are shared between the Bhagavad Gita and the Thirukkural? |
+| 6 | What do the Bhagavad Gita and the Thirukkural say about the importance of truthfulness and integrity? |
+| 7 | How is the concept of karma and duty explained in the Bhagavad Gita compared to the Thirukkural? |
+| 8 | What guidance do the Bhagavad Gita and the Thirukkural offer on self-discipline and inner peace? |
+| 9 | How do the Bhagavad Gita and the Thirukkural address the relationship between wealth, ethics, and spiritual growth? |
+| 10 | What do the Bhagavad Gita and the Thirukkural teach about leadership and righteous conduct? |
+| 11 | How do the Bhagavad Gita and the Thirukkural describe the qualities of an ideal person? |
+| 12 | What perspectives on love, friendship, and human relationships appear in the Bhagavad Gita and the Thirukkural? |
 
 ---
 
@@ -427,54 +428,55 @@ Here are meaningful questions you can ask VerseSage to explore India's cross-scr
 VerseSage is not just another scripture search tool. It introduces several innovations that set it apart:
 
 ###  Cross-Scripture Comparative Reasoning
-No existing system performs **automated comparative analysis** across multiple Indian scriptures in a single query. VerseSage retrieves relevant verses from the Bhagavad Gita, Upanishads, Ramayana, Guru Granth Sahib, Dhammapada, and Thirukkural — and uses Google Gemma-4-E4B to synthesize insights across traditions.
+No existing system performs **automated comparative analysis** across Indian scriptures in a single query. VerseSage currently retrieves relevant verses from the Bhagavad Gita and the Thirukkural — and uses Google Gemma-4-E4B to synthesize insights across these two foundational traditions, with a modular architecture ready to incorporate additional scriptures.
 
 ###  Citation-Backed AI
 Every claim in VerseSage's response is traceable to a specific verse, chapter, and scripture. Unlike general-purpose chatbots, **nothing is fabricated** — the RAG pipeline ensures that the LLM only reasons over real, retrieved passages.
 
-###  Metadata-Driven Retrieval
+### Metadata-Driven Retrieval
 Rich metadata (scripture, chapter, verse, language, theme, speaker) enables **structured, filterable retrieval** that goes far beyond naive text similarity.
 
 ###  Explainable AI
 Users can see *which* verses informed the response and *from which* scriptures they were drawn — making the system transparent and auditable.
 
-###  Semantic Understanding
+### Semantic Understanding
 Sentence Transformer embeddings capture the deep semantic meaning of both queries and scripture passages, enabling retrieval that **transcends language and keyword barriers**.
 
-###  Cultural Knowledge Preservation
+### Cultural Knowledge Preservation
 VerseSage digitizes, indexes, and makes searchable India's vast spiritual heritage — contributing to the **preservation and accessibility** of knowledge that has guided civilizations for millennia.
 
 ---
 
-##  Applications
+## Applications
 
 | Domain | Application |
 |--------|-------------|
-|  **Education** | Interactive teaching aid for courses on Indian philosophy, comparative religion, and ethics |
-|  **Research** | Accelerates scholarly research by enabling instant cross-scripture semantic search and comparison |
-|  **Comparative Religion** | Facilitates interfaith dialogue by surfacing shared values and distinct perspectives across traditions |
-|  **Spiritual Learning** | Provides accessible, citation-backed guidance for personal spiritual exploration and study |
-|  **Knowledge Discovery** | Reveals unexpected connections and thematic patterns across scriptures that manual study might miss |
-|  **Cultural Preservation** | Digitizes and indexes India's spiritual heritage, ensuring it remains accessible for future generations |
+| **Education** | Interactive teaching aid for courses on Indian philosophy, comparative religion, and ethics |
+| **Research** | Accelerates scholarly research by enabling instant cross-scripture semantic search and comparison |
+| **Comparative Religion** | Facilitates interfaith dialogue by surfacing shared values and distinct perspectives across traditions |
+| **Spiritual Learning** | Provides accessible, citation-backed guidance for personal spiritual exploration and study |
+| **Knowledge Discovery** | Reveals unexpected connections and thematic patterns across scriptures that manual study might miss |
+| **Cultural Preservation** | Digitizes and indexes India's spiritual heritage, ensuring it remains accessible for future generations |
 
 ---
 
-##  Future Roadmap
+## 📈 Future Roadmap
 
-| Feature | Description |
+|  Feature | Description |
 |---------|-------------|
-| **Voice Interaction** | Ask questions and receive answers via speech — enabling hands-free, accessible scripture exploration |
-| **Regional Language Support** | Hindi, Tamil, Punjabi, Pali, and other Indian language interfaces and retrieval |
-| **More Scriptures** | Expand the knowledge base to include the Vedas, Mahabharata, Yoga Sutras, Jain Agamas, and more |
-| **Mobile App** | Native Android and iOS applications for on-the-go scripture exploration |
-| **Personalized Recommendations** | AI-driven suggestions based on user interests, reading history, and spiritual goals |
-| **Conversation History** | Persistent chat sessions with the ability to revisit and continue past explorations |
-| **Scholar Commentaries** | Integration of traditional commentaries (Shankaracharya, Ramanujacharya, etc.) alongside verse retrieval |
-| **Citation Visualization** | Interactive visual maps showing which scriptures and verses informed each part of the response |
+|  **Expand Scripture Knowledge Base** | Integrate additional Indian scriptures including the **Upanishads**, **Ramayana**, **Guru Granth Sahib**, **Dhammapada**, and other classical Indian texts. The modular architecture is already designed to support easy expansion |
+|  **Voice Interaction** | Ask questions and receive answers via speech — enabling hands-free, accessible scripture exploration |
+|  **Regional Language Support** | Hindi, Tamil, Punjabi, Pali, and other Indian language interfaces and retrieval |
+|  **Even More Scriptures** | Further expand to include the Vedas, Mahabharata, Yoga Sutras, Jain Agamas, and more |
+|  **Mobile App** | Native Android and iOS applications for on-the-go scripture exploration |
+|  **Personalized Recommendations** | AI-driven suggestions based on user interests, reading history, and spiritual goals |
+|  **Conversation History** | Persistent chat sessions with the ability to revisit and continue past explorations |
+|  **Scholar Commentaries** | Integration of traditional commentaries (Shankaracharya, Ramanujacharya, etc.) alongside verse retrieval |
+|  **Citation Visualization** | Interactive visual maps showing which scriptures and verses informed each part of the response |
 
 ---
 
-##  Contributing
+## Contributing
 
 Contributions are welcome and appreciated! Whether you're fixing a bug, adding a scripture, improving documentation, or proposing a new feature — every contribution makes VerseSage better.
 
@@ -547,7 +549,7 @@ SOFTWARE.
 
 ---
 
-##  Acknowledgements
+## Acknowledgements
 
 VerseSage stands on the shoulders of remarkable open-source projects and communities:
 
@@ -561,19 +563,23 @@ VerseSage stands on the shoulders of remarkable open-source projects and communi
 - **Gemma for Bharat Hackathon** — for creating the platform and inspiration to build AI solutions rooted in India's cultural heritage
 
 ---
-
-##  Why VerseSage?
+## Why VerseSage?
 
 *India's spiritual texts have guided billions of people across millennia — offering profound insights on consciousness, ethics, duty, compassion, and the nature of existence. Yet this wisdom has remained locked in individual texts, accessible only to those with the linguistic expertise and scholarly patience to navigate thousands of verses across multiple traditions.*
 
 *VerseSage changes this.*
 
-*By combining the semantic power of modern AI embeddings, the precision of Retrieval-Augmented Generation, and the reasoning capabilities of Google Gemma-4-E4B, VerseSage makes it possible for anyone — a student, a researcher, a seeker — to ask a question in plain language and receive a thoughtful, comparative, citation-backed answer drawn from six major Indian scriptures.*
+*By combining the semantic power of modern AI embeddings, the precision of Retrieval-Augmented Generation, and the reasoning capabilities of Google Gemma-4-E4B, VerseSage makes it possible for anyone — a student, a researcher, a seeker — to ask a question in plain language and receive a thoughtful, comparative, citation-backed answer. The current release draws from the Bhagavad Gita and the Thirukkural, with a modular architecture ready to embrace more of India's scriptural heritage.*
 
 *This is not about replacing human wisdom with artificial intelligence. It is about using AI as a bridge — connecting seekers to the timeless teachings that have always been there, waiting to be discovered.*
 
-**VerseSage: Where ancient wisdom meets modern intelligence.** 
+**VerseSage: Where ancient wisdom meets modern intelligence.** 🙏
 
 ---
 
-Built with love for the Google Gemma for Bharat Hackathon
+Built with ❤️ for the Google Gemma for Bharat Hackathon
+
+
+[![Star this repo](https://img.shields.io/github/stars/roshanisingh16/verse-sage?style=social)](https://github.com/roshanisingh16/verse-sage)
+[![Fork this repo](https://img.shields.io/github/forks/roshanisingh16/verse-sage?style=social)](https://github.com/roshanisingh16/verse-sage/fork)
+
