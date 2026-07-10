@@ -198,14 +198,13 @@ with gr.Blocks(theme=theme, css=css, title="VerseSage") as demo:
                     """
                 )
 
-                gr.Markdown("## Technology Stack")
+                gr.Markdown("## Technology")
                 gr.Markdown(
                     """
                     • Google Gemma-4-E4B  
-                    • Retrieval-Augmented Generation 
+                    • Retrieval-Augmented Generation (RAG)
                     • ChromaDB  
-                    • Sentence Transformers  
-                    • Gradio
+                    
                     """
                 )
 
