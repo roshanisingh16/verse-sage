@@ -2,9 +2,9 @@
 
 ### AI-powered Cross-Scripture Wisdom Engine
 
-*Bridging India's timeless spiritual wisdom with modern Artificial Intelligence using Google Gemma-4-E4B.*
+*Bridging India's timeless spiritual wisdom with modern Artificial Intelligence using Google Gemma-3-E4B-it.*
 
-[![Google Gemma-4-E4B](https://img.shields.io/badge/Google-Gemma--4--E4B-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/gemma)
+[![Google Gemma-3-E4B-it](https://img.shields.io/badge/Google-Gemma--3--E4B-it-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/gemma)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
 [![Gradio](https://img.shields.io/badge/Gradio-UI-F97316?style=for-the-badge&logo=gradio&logoColor=white)](https://gradio.app)
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_DB-00A67E?style=for-the-badge&logo=databricks&logoColor=white)](https://www.trychroma.com)
@@ -15,7 +15,7 @@
 
 
 
-**VerseSage** uses semantic search and Retrieval-Augmented Generation (RAG) to let anyone ask natural-language questions across Indian scriptures — and receive citation-backed, comparative answers powered by **Google Gemma-4-E4B**. The current release supports the **Bhagavad Gita** and **Thirukkural**, with more scriptures coming soon.
+**VerseSage** uses semantic search and Retrieval-Augmented Generation (RAG) to let anyone ask natural-language questions across Indian scriptures — and receive citation-backed, comparative answers powered by **Google Gemma-3-E4B-it**. The current release supports the **Bhagavad Gita** and **Thirukkural**, with more scriptures coming soon.
 
 
 [Overview](#-overview) · [Features](#-features) · [Scriptures](#-supported-scriptures) · [Architecture](#-system-architecture) · [Installation](#-installation) · [Usage](#-usage) · [Roadmap](#-future-roadmap) · [Contributing](#-contributing)
@@ -37,7 +37,7 @@ Yet accessing this wisdom remains surprisingly difficult:
 1. **Semantic search** — understanding the *meaning* behind a question, not just its keywords.
 2. **Cross-scripture retrieval** — pulling relevant verses from multiple traditions simultaneously.
 3. **Retrieval-Augmented Generation (RAG)** — grounding every AI response in real, retrieved passages so that nothing is fabricated.
-4. **Comparative reasoning** — using Google Gemma-4-E4B to synthesize insights across the Bhagavad Gita and Thirukkural, highlighting convergences and divergences.
+4. **Comparative reasoning** — using Google Gemma-3-E4B-it to synthesize insights across the Bhagavad Gita and Thirukkural, highlighting convergences and divergences.
 5. **Citation-backed answers** — every claim in the response is traceable to a specific verse, chapter, and scripture.
 
 The result is an AI system that is **accurate**, **transparent**, **cross-traditional**, and **trustworthy** — one that treats India's spiritual texts with the scholarly rigor they deserve.
@@ -69,7 +69,7 @@ VerseSage implements a complete **Retrieval-Augmented Generation (RAG)** pipelin
 │                                                                     │
 │   User Query ──► Embedding ──► Vector Search ──► Top-K Retrieval   │
 │                                                                     │
-│   Retrieved Verses ──► Prompt Construction ──► Gemma-4-E4B LLM     │
+│   Retrieved Verses ──► Prompt Construction ──► Gemma-3-E4B-it LLM     │
 │                                                                     │
 │   LLM Output ──► Comparative Reasoning ──► Citation Validation     │
 │                                                                     │
@@ -83,7 +83,7 @@ VerseSage implements a complete **Retrieval-Augmented Generation (RAG)** pipelin
 3. **ChromaDB** performs a nearest-neighbor search across the entire multi-scripture knowledge base.
 4. The top-K most relevant verses — along with their metadata (scripture, chapter, verse number, language) — are retrieved.
 5. A structured prompt is constructed that includes the original question and the retrieved passages.
-6. **Google Gemma-4-E4B** reasons over the passages, compares teachings across traditions, and generates a coherent, comparative response.
+6. **Google Gemma-3-E4B-it** reasons over the passages, compares teachings across traditions, and generates a coherent, comparative response.
 7. Every claim in the response is backed by a specific citation from the retrieved verses.
 
 > The user never sees a hallucinated verse. Every answer is grounded in authentic text.
@@ -96,7 +96,7 @@ VerseSage implements a complete **Retrieval-Augmented Generation (RAG)** pipelin
 |---------|-------------|
 |  **Semantic Scripture Search** | Understands the *meaning* of your question, not just keywords — surfaces conceptually relevant verses across traditions |
 |  **Cross-Scripture Comparison** | Retrieves and compares teachings from the Bhagavad Gita and Thirukkural in a single response, with more scriptures planned for future releases |
-|  **Google Gemma-4-E4B Reasoning** | Leverages Google's state-of-the-art language model for nuanced philosophical reasoning and synthesis |
+|  **Google Gemma-3-E4B-it Reasoning** | Leverages Google's state-of-the-art language model for nuanced philosophical reasoning and synthesis |
 |  **Retrieval-Augmented Generation** | Grounds every response in real, retrieved scripture passages — eliminates hallucination |
 |  **Citation-Backed Answers** | Every claim is traceable to a specific verse, chapter, and scripture — fully auditable |
 |  **ChromaDB Vector Search** | High-performance vector similarity search for sub-second retrieval across thousands of verses |
@@ -127,7 +127,7 @@ The current release of VerseSage supports the following scriptures:
 |-------|-----------|------|
 | **Frontend** | [Gradio](https://gradio.app) | Interactive web interface for query input and response display |
 | **Language** | [Python 3.10+](https://python.org) | Core application logic, pipeline orchestration, and data processing |
-| **LLM** | [Google Gemma-4-E4B](https://ai.google.dev/gemma) | Comparative reasoning, response generation, and philosophical synthesis |
+| **LLM** | [Google Gemma-3-E4B-it](https://ai.google.dev/gemma) | Comparative reasoning, response generation, and philosophical synthesis |
 | **Embeddings** | [Sentence Transformers](https://www.sbert.net) | Dense vector encoding of queries and scripture passages for semantic search |
 | **Vector Database** | [ChromaDB](https://www.trychroma.com) | Persistent vector storage, indexing, and approximate nearest-neighbor retrieval |
 | **Deployment** | [Hugging Face Spaces](https://huggingface.co/spaces) | Cloud hosting and public access for the live demo |
@@ -174,7 +174,7 @@ The current release of VerseSage supports the following scriptures:
                                        │
                                        ▼
                             ┌──────────────────────┐
-                            │  Google Gemma-4-E4B   │
+                            │  Google Gemma-3-E4B-it   │
                             │  Comparative Reasoning│
                             └──────────┬───────────┘
                                        │
@@ -194,7 +194,7 @@ The current release of VerseSage supports the following scriptures:
 | **3. Retrieval** | ChromaDB | The query vector is compared against all indexed scripture vectors; the top-K most similar passages are returned |
 | **4. Enrichment** | Metadata Engine | Each retrieved passage is annotated with its scripture name, chapter, verse number, and language |
 | **5. Prompt Assembly** | Pipeline Module | The original question and the retrieved, annotated passages are composed into a structured prompt |
-| **6. Reasoning** | Google Gemma-4-E4B | The LLM reads the prompt, performs comparative analysis across scriptures, and generates a synthesized response |
+| **6. Reasoning** | Google Gemma-3-E4B-it | The LLM reads the prompt, performs comparative analysis across scriptures, and generates a synthesized response |
 | **7. Output** | Gradio Interface | The citation-backed response — with verse references — is displayed to the user |
 
 ---
@@ -218,8 +218,8 @@ A structured prompt is assembled containing:
 - The retrieved scripture passages (with full metadata)
 - Instructions for comparative analysis and citation formatting
 
-### Step 5 — Gemma-4-E4B Reasoning
-**Google Gemma-4-E4B** receives the prompt and performs:
+### Step 5 — Gemma-3-E4B-it Reasoning
+**Google Gemma-3-E4B-it** receives the prompt and performs:
 - **Comprehension** — understanding each retrieved passage in context
 - **Comparison** — identifying convergences and divergences across scriptures
 - **Synthesis** — generating a coherent, multi-perspective response
@@ -325,7 +325,7 @@ verse-sage/
 ├── data/                   # Scripture datasets (JSON/CSV) with verse text and metadata
 ├── embeddings/             # Sentence Transformer embedding logic and model configuration
 ├── vectordb/               # ChromaDB initialization, indexing, and query interface
-├── llm/                    # Google Gemma-4-E4B integration, prompt templates, and inference
+├── llm/                    # Google Gemma-3-E4B-it integration, prompt templates, and inference
 ├── pipeline/               # End-to-end RAG pipeline orchestration (retrieval → generation)
 ├── docs/                   # Project documentation, design decisions, and API reference
 ├── assets/                 # Images, banners, diagrams, and visual assets
@@ -339,7 +339,7 @@ verse-sage/
 | `data/` | Stores pre-processed scripture data with verse text, translations, and structured metadata |
 | `embeddings/` | Handles loading the Sentence Transformer model and encoding text into dense vectors |
 | `vectordb/` | Manages the ChromaDB collection — indexing scripture vectors, persisting the database, and running similarity queries |
-| `llm/` | Contains the Google Gemma-4-E4B integration — model loading, prompt template construction, and inference logic |
+| `llm/` | Contains the Google Gemma-3-E4B-it integration — model loading, prompt template construction, and inference logic |
 | `pipeline/` | Orchestrates the full RAG pipeline — from receiving a query to returning a citation-backed response |
 | `docs/` | Supplementary documentation including architecture diagrams, design rationale, and API docs |
 | `assets/` | Static assets — banner images, architecture diagrams, and screenshots for the README |
@@ -428,7 +428,7 @@ Here are meaningful questions you can ask VerseSage to explore cross-scripture w
 VerseSage is not just another scripture search tool. It introduces several innovations that set it apart:
 
 ###  Cross-Scripture Comparative Reasoning
-No existing system performs **automated comparative analysis** across Indian scriptures in a single query. VerseSage currently retrieves relevant verses from the Bhagavad Gita and the Thirukkural — and uses Google Gemma-4-E4B to synthesize insights across these two foundational traditions, with a modular architecture ready to incorporate additional scriptures.
+No existing system performs **automated comparative analysis** across Indian scriptures in a single query. VerseSage currently retrieves relevant verses from the Bhagavad Gita and the Thirukkural — and uses Google Gemma-3-E4B-it to synthesize insights across these two foundational traditions, with a modular architecture ready to incorporate additional scriptures.
 
 ###  Citation-Backed AI
 Every claim in VerseSage's response is traceable to a specific verse, chapter, and scripture. Unlike general-purpose chatbots, **nothing is fabricated** — the RAG pipeline ensures that the LLM only reasons over real, retrieved passages.
@@ -553,7 +553,7 @@ SOFTWARE.
 
 VerseSage stands on the shoulders of remarkable open-source projects and communities:
 
-- **[Google Gemma](https://ai.google.dev/gemma)** — for Gemma-4-E4B, the powerful and efficient language model at the heart of VerseSage's reasoning engine
+- **[Google Gemma](https://ai.google.dev/gemma)** — for Gemma-3-E4B-it, the powerful and efficient language model at the heart of VerseSage's reasoning engine
 - **[Hugging Face](https://huggingface.co)** — for the Transformers ecosystem, model hosting, and Spaces deployment platform
 - **[ChromaDB](https://www.trychroma.com)** — for the fast, developer-friendly vector database that powers our semantic search
 - **[Sentence Transformers](https://www.sbert.net)** — for state-of-the-art sentence embedding models that make semantic retrieval possible
@@ -569,7 +569,7 @@ VerseSage stands on the shoulders of remarkable open-source projects and communi
 
 *VerseSage changes this.*
 
-*By combining the semantic power of modern AI embeddings, the precision of Retrieval-Augmented Generation, and the reasoning capabilities of Google Gemma-4-E4B, VerseSage makes it possible for anyone — a student, a researcher, a seeker — to ask a question in plain language and receive a thoughtful, comparative, citation-backed answer. The current release draws from the Bhagavad Gita and the Thirukkural, with a modular architecture ready to embrace more of India's scriptural heritage.*
+*By combining the semantic power of modern AI embeddings, the precision of Retrieval-Augmented Generation, and the reasoning capabilities of Google Gemma-3-E4B-it, VerseSage makes it possible for anyone — a student, a researcher, a seeker — to ask a question in plain language and receive a thoughtful, comparative, citation-backed answer. The current release draws from the Bhagavad Gita and the Thirukkural, with a modular architecture ready to embrace more of India's scriptural heritage.*
 
 *This is not about replacing human wisdom with artificial intelligence. It is about using AI as a bridge — connecting seekers to the timeless teachings that have always been there, waiting to be discovered.*
 
