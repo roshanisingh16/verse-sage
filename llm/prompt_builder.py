@@ -42,9 +42,14 @@ def build_messages(user_question: str, retrieved_chunks: List[Dict]) -> List[Dic
     else:
         passages_text = format_passages(retrieved_chunks)
 
-    user_text = f"PASSAGES:\n{passages_text}\n\nUSER QUESTION:\n{user_question}\n"
+    # ⚡ THE FIX: We merge the system instructions directly into the user's text block
+    # so the Gemma tokenizer doesn't crash looking for a non-existent "system" role!
+    combined_user_text = (
+        f"--- INSTRUCTIONS ---\n{SYSTEM_INSTRUCTIONS}\n\n"
+        f"--- PASSAGES ---\n{passages_text}\n\n"
+        f"--- USER QUESTION ---\n{user_question}\n"
+    )
 
     return [
-        {"role": "system", "content": [{"type": "text", "text": SYSTEM_INSTRUCTIONS}]},
-        {"role": "user", "content": [{"type": "text", "text": user_text}]},
+        {"role": "user", "content": combined_user_text},
     ]
