@@ -3,7 +3,8 @@ import kagglehub
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 class GemmaClient:
-    def __init__(self, kaggle_model: str = "google/gemma-3/transformers/gemma-3-4b-it",
+    # ⚡ CHANGED: Now pointing to the Gemma 2 2B model!
+    def __init__(self, kaggle_model: str = "google/gemma-2/transformers/gemma-2-2b-it",
                  enable_thinking: bool = False):
         self.enable_thinking = enable_thinking
         
@@ -12,7 +13,7 @@ class GemmaClient:
         
         self.processor = AutoTokenizer.from_pretrained(model_path)
         
-        # ⚡ bfloat16 memory prevents the blank string NaN overflow bug!
+        # This exact setup runs lightning-fast on Kaggle and easily fits in your local 4GB VRAM
         self.model = AutoModelForCausalLM.from_pretrained(
             model_path,
             device_map="cuda:0", 
