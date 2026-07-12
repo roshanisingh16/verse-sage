@@ -2,6 +2,7 @@ streamlit
 chromadb
 sentence-transformers
 torch
+torchvision
 transformers
 accelerate
 kagglehub

@@ -1,585 +1,1153 @@
-# VerseSage
-
-### AI-powered Cross-Scripture Wisdom Engine
-
-*Bridging India's timeless spiritual wisdom with modern Artificial Intelligence using Google Gemma-3-E4B-it.*
-
-[![Google Gemma-3-E4B-it](https://img.shields.io/badge/Google-Gemma--3--E4B-it-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/gemma)
+<div align="center">
+#  VerseSage
+### *AI-Powered Cross-Scripture Wisdom Engine*
+**Ask life's deepest questions. Receive grounded, citation-backed wisdom from India's sacred scriptures.**
+<br/>
+[![Built with Google Gemma](https://img.shields.io/badge/Built%20with-Google%20Gemma--2--2b--it-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/gemma)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Gradio](https://img.shields.io/badge/Gradio-UI-F97316?style=for-the-badge&logo=gradio&logoColor=white)](https://gradio.app)
-[![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector_DB-00A67E?style=for-the-badge&logo=databricks&logoColor=white)](https://www.trychroma.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Hugging Face Spaces](https://img.shields.io/badge/🤗_Hugging_Face-Spaces-FFD21E?style=for-the-badge)](https://huggingface.co/spaces)
-[![Open Source](https://img.shields.io/badge/Open_Source-❤️-red?style=for-the-badge)](https://github.com/roshanisingh16/verse-sage)
-[![RAG Pipeline](https://img.shields.io/badge/RAG-Pipeline-blueviolet?style=for-the-badge)](https://github.com/roshanisingh16/verse-sage)
-
-
-
-**VerseSage** uses semantic search and Retrieval-Augmented Generation (RAG) to let anyone ask natural-language questions across Indian scriptures — and receive citation-backed, comparative answers powered by **Google Gemma-3-E4B-it**. The current release supports the **Bhagavad Gita** and **Thirukkural**, with more scriptures coming soon.
-
-
-[Overview](#-overview) · [Features](#-features) · [Scriptures](#-supported-scriptures) · [Architecture](#-system-architecture) · [Installation](#-installation) · [Usage](#-usage) · [Roadmap](#-future-roadmap) · [Contributing](#-contributing)
-
+[![Streamlit](https://img.shields.io/badge/Streamlit-Interface-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
+[![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20DB-00A67E?style=for-the-badge)](https://www.trychroma.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+<br/>
+[![RAG Pipeline](https://img.shields.io/badge/Architecture-RAG%20Pipeline-blueviolet?style=flat-square)](#-rag-pipeline-explanation)
+[![Sentence Transformers](https://img.shields.io/badge/Embeddings-Sentence%20Transformers-orange?style=flat-square)](https://www.sbert.net/)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Transformers-blue?style=flat-square)](https://huggingface.co/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-Backend-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](https://pytorch.org/)
+<br/>
+VerseSage leverages **Retrieval-Augmented Generation (RAG)** and **Google Gemma-2-2b-it** to semantically search across the **Bhagavad Gita** and **Thirukkural**, delivering trustworthy, grounded, and comparative insights with full citation validation. Every response is anchored to authentic scripture — never hallucinated from model memory.
+<br/>
+[Key Features](#-key-features) · [Architecture](#%EF%B8%8F-architecture-overview) · [Get Started](#%EF%B8%8F-installation-guide) · [RAG Pipeline](#-rag-pipeline-explanation) · [Future Scope](#-future-scope)
+</div>
 ---
-
-## Overview
-
-India's spiritual and philosophical heritage spans thousands of years and encompasses millions of verses across dozens of sacred texts — from the Bhagavad Gita to the Thirukkural. These scriptures hold profound wisdom on ethics, consciousness, duty, compassion, and the nature of existence.
-
-Yet accessing this wisdom remains surprisingly difficult:
-
-- **Traditional search is keyword-based.** Searching for "forgiveness" will miss verses that discuss *kshama*, *daya*, or *karuna* — words that carry the same meaning in different scriptural contexts.
-- **Scriptures live in silos.** A student of the Bhagavad Gita rarely encounters the Thirukkural's parallel teachings on the same topic, and vice versa.
-- **AI can hallucinate.** General-purpose language models may fabricate verses, misattribute quotes, or invent scripture references that do not exist.
-
-**VerseSage** currently enables comparative reasoning between the **Bhagavad Gita** and the **Thirukkural**, with a modular architecture designed to support additional scriptures in future releases. It solves these problems by combining:
-
-1. **Semantic search** — understanding the *meaning* behind a question, not just its keywords.
-2. **Cross-scripture retrieval** — pulling relevant verses from multiple traditions simultaneously.
-3. **Retrieval-Augmented Generation (RAG)** — grounding every AI response in real, retrieved passages so that nothing is fabricated.
-4. **Comparative reasoning** — using Google Gemma-3-E4B-it to synthesize insights across the Bhagavad Gita and Thirukkural, highlighting convergences and divergences.
-5. **Citation-backed answers** — every claim in the response is traceable to a specific verse, chapter, and scripture.
-
-The result is an AI system that is **accurate**, **transparent**, **cross-traditional**, and **trustworthy** — one that treats India's spiritual texts with the scholarly rigor they deserve.
-
+## 📖 Problem Statement
+India's scriptural heritage spans millennia of accumulated wisdom — teachings on duty, consciousness, ethics, compassion, and the nature of reality. Yet in the digital age, accessing and meaningfully comparing this knowledge remains a significant challenge.
+|
+#
+|
+ Barrier 
+|
+ Impact 
+|
+|
 ---
-
-## Problem Statement
-
-| # | Problem | Impact |
-|---|---------|--------|
-| 1 | Existing scripture tools search **only one text** at a time | Users miss related teachings from other traditions |
-| 2 | Keyword-based search **misses semantic meaning** | Conceptually relevant verses are never surfaced |
-| 3 | **Cross-scripture comparison** requires expert-level knowledge | Interfaith and comparative study remains inaccessible |
-| 4 | General-purpose LLMs **hallucinate** scripture references | Users cannot trust AI-generated spiritual guidance |
-| 5 | No single platform offers **grounded, citation-backed** answers across Indian scriptures | Scholarly rigor is sacrificed for convenience |
-
-> **In short:** There is no existing system that combines semantic understanding, multi-scripture retrieval, comparative reasoning, and citation verification — all in one accessible interface.
-
+|
+---------
+|
+--------
+|
+|
+**
+1
+**
+|
+**
+Keyword-only search
+**
+ — Existing tools rely on exact word matches 
+|
+ Conceptual and paraphrased queries are missed entirely; cross-language semantic meaning is invisible 
+|
+|
+**
+2
+**
+|
+**
+No cross-scripture comparison
+**
+ — Comparing themes across texts requires deep domain expertise 
+|
+ Learners, educators, and researchers must manually cross-reference thousands of verses 
+|
+|
+**
+3
+**
+|
+**
+AI hallucination risk
+**
+ — General-purpose LLMs fabricate plausible but unsourced spiritual content 
+|
+ Users cannot trust or verify AI-generated answers, undermining credibility and respectfulness 
+|
+|
+**
+4
+**
+|
+**
+Fragmented access
+**
+ — Each scripture lives in its own silo with its own tools and formats 
+|
+ A unified, intelligent interface across traditions simply does not exist 
+|
+> [!IMPORTANT]
+> When dealing with sacred texts, **inaccuracy is not an option**. VerseSage addresses all four barriers through a unified RAG pipeline that retrieves before it reasons and cites before it claims.
 ---
-
-## Solution
-
-VerseSage implements a complete **Retrieval-Augmented Generation (RAG)** pipeline that transforms a user's natural-language question into a grounded, citation-backed, cross-scripture response:
-
+## 💡 Solution Overview
+VerseSage is an end-to-end **Retrieval-Augmented Generation (RAG)** system that transforms natural-language questions into citation-backed, cross-scripture responses.
+Instead of relying on an LLM's training memory — which can hallucinate, fabricate verses, or misattribute quotes — VerseSage **retrieves authentic scripture passages first**, then instructs the model to reason exclusively over retrieved content. Every claim in the response is anchored to a real verse that the user can independently verify.
+**Currently supported scriptures:**
+|
+ Scripture 
+|
+ Language 
+|
+ Verses 
+|
+ Description 
+|
+|
+-----------
+|
+----------
+|
+--------
+|
+-------------
+|
+|
+**
+Bhagavad Gita
+**
+|
+ Sanskrit 
+|
+ 700 verses 
+|
+ Dialogue between Arjuna and Lord Krishna exploring duty, righteousness, devotion, and the nature of the self 
+|
+|
+**
+Thirukkural
+**
+|
+ Tamil 
+|
+ 1,330 couplets 
+|
+ Authored by Thiruvalluvar, organized into three books: Virtue (
+*
+Aram
+*
+), Wealth (
+*
+Porul
+*
+), and Love (
+*
+Inbam
+*
+) 
+|
+> [!NOTE]
+> Support for additional Indian scriptures (such as the Upanishads, Dhammapada, Guru Granth Sahib, and Ramayana) is planned as future work. The current implementation **exclusively** covers **Bhagavad Gita** and **Thirukkural**.
+---
+## ✨ Key Features
+|
+ Feature 
+|
+ Description 
+|
+|
+---------
+|
+-------------
+|
+|
+ 🗣️ 
+**
+Natural Language Questioning
+**
+|
+ Ask questions in plain language — no special syntax, keywords, or scriptural knowledge required 
+|
+|
+ 🧠 
+**
+Retrieval-Augmented Generation
+**
+|
+ Grounds every response in retrieved scripture passages, preventing hallucination and fabrication 
+|
+|
+ ⚖️ 
+**
+Comparative Analysis
+**
+|
+ Compares teachings across Bhagavad Gita and Thirukkural, surfacing shared wisdom and unique perspectives 
+|
+|
+ 📜 
+**
+Citation Validation
+**
+|
+ Every claim includes source scripture and verse reference for full verifiability 
+|
+|
+ 🗄️ 
+**
+ChromaDB Semantic Retrieval
+**
+|
+ High-performance vector database delivers semantically relevant verses using cosine similarity 
+|
+|
+ 🖥️ 
+**
+Streamlit Interface
+**
+|
+ Clean, interactive web UI accessible from any browser — no setup required for end users 
+|
+|
+ 🔒 
+**
+Grounded Responses
+**
+|
+ The model generates answers using 
+**
+only
+**
+ retrieved passages — never from training memory alone 
+|
+---
+## 🏗️ Architecture Overview
+The following diagram illustrates VerseSage's end-to-end RAG architecture — from user query to citation-validated response:
+```mermaid
+flowchart TD
+    A["🧑 User"] -->|"Natural language question"| B["🖥️ Streamlit Interface"]
+    B -->|"Passes query to pipeline"| C["🔢 Sentence Transformer\n(paraphrase-multilingual-mpnet-base-v2)"]
+    C -->|"Dense vector embedding"| D["🗄️ ChromaDB\nVector Store"]
+    D -->|"Top-K relevant verses\n+ metadata"| E["📝 Prompt Construction"]
+    A2["📚 Scripture Corpus\n(Bhagavad Gita + Thirukkural)"] -->|"Pre-indexed embeddings"| D
+    E -->|"Query + Retrieved Verses\n+ Grounding Instructions"| F["🤖 Google Gemma-2-2b-it"]
+    F -->|"Comparative reasoning\nover retrieved context"| G["✅ Citation Validation"]
+    G -->|"Verified, grounded response"| B
+    B -->|"Displays answer + sources"| A
+    style A fill:#6C63FF,stroke:#5A52D9,color:#fff
+    style B fill:#FF4B4B,stroke:#D93636,color:#fff
+    style C fill:#FF9800,stroke:#E68900,color:#fff
+    style D fill:#00A67E,stroke:#008F6B,color:#fff
+    style E fill:#9C27B0,stroke:#7B1FA2,color:#fff
+    style F fill:#4285F4,stroke:#3367D6,color:#fff
+    style G fill:#22C55E,stroke:#16A34A,color:#fff
+    style A2 fill:#F59E0B,stroke:#D97706,color:#fff
 ```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        VerseSage RAG Pipeline                       │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                     │
-│   User Query ──► Embedding ──► Vector Search ──► Top-K Retrieval   │
-│                                                                     │
-│   Retrieved Verses ──► Prompt Construction ──► Gemma-3-E4B-it LLM     │
-│                                                                     │
-│   LLM Output ──► Comparative Reasoning ──► Citation Validation     │
-│                                                                     │
-│   Validated Response ──► Gradio UI ──► User                        │
-│                                                                     │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
-1. The user asks a question in plain language (e.g., *"What do Indian scriptures say about controlling anger?"*).
-2. The question is embedded into a dense vector using **Sentence Transformers**.
-3. **ChromaDB** performs a nearest-neighbor search across the entire multi-scripture knowledge base.
-4. The top-K most relevant verses — along with their metadata (scripture, chapter, verse number, language) — are retrieved.
-5. A structured prompt is constructed that includes the original question and the retrieved passages.
-6. **Google Gemma-3-E4B-it** reasons over the passages, compares teachings across traditions, and generates a coherent, comparative response.
-7. Every claim in the response is backed by a specific citation from the retrieved verses.
-
-> The user never sees a hallucinated verse. Every answer is grounded in authentic text.
-
 ---
-
-##  Features
-
-| Feature | Description |
-|---------|-------------|
-|  **Semantic Scripture Search** | Understands the *meaning* of your question, not just keywords — surfaces conceptually relevant verses across traditions |
-|  **Cross-Scripture Comparison** | Retrieves and compares teachings from the Bhagavad Gita and Thirukkural in a single response, with more scriptures planned for future releases |
-|  **Google Gemma-3-E4B-it Reasoning** | Leverages Google's state-of-the-art language model for nuanced philosophical reasoning and synthesis |
-|  **Retrieval-Augmented Generation** | Grounds every response in real, retrieved scripture passages — eliminates hallucination |
-|  **Citation-Backed Answers** | Every claim is traceable to a specific verse, chapter, and scripture — fully auditable |
-|  **ChromaDB Vector Search** | High-performance vector similarity search for sub-second retrieval across thousands of verses |
-|  **Metadata-Aware Retrieval** | Filters and ranks results using scripture name, chapter, verse number, language, and thematic tags |
-|  **Gradio Interface** | Clean, intuitive web UI accessible from any browser — no installation required for end users |
-|  **Modular Architecture** | Cleanly separated components (data, embeddings, vector DB, LLM, pipeline) for easy extension and maintenance |
-|  **Fast Retrieval** | Optimized vector indexing delivers relevant verses in milliseconds |
-|  **Future Multilingual Support** | Architecture designed to support Hindi, Tamil, Punjabi, Pali, and other Indian languages |
-
+## 🔄 Project Workflow
+The complete pipeline from user question to verified answer:
+|
+ Stage 
+|
+ Component 
+|
+ What Happens 
+|
+|
+-------
+|
+-----------
+|
+--------------
+|
+|
+**
+1
+**
+|
+**
+User Input
+**
+|
+ The user types a natural-language question (e.g., 
+*
+"What is karma according to the Bhagavad Gita?"
+*
+) into the Streamlit interface 
+|
+|
+**
+2
+**
+|
+**
+Query Embedding
+**
+|
+ The question is encoded into a dense vector using 
+`paraphrase-multilingual-mpnet-base-v2`
+, capturing semantic meaning rather than surface-level keywords 
+|
+|
+**
+3
+**
+|
+**
+Semantic Retrieval
+**
+|
+ ChromaDB performs cosine similarity search against pre-indexed verse embeddings from Bhagavad Gita and Thirukkural, returning the Top-K most relevant passages with metadata 
+|
+|
+**
+4
+**
+|
+**
+Prompt Construction
+**
+|
+ A structured prompt is assembled containing the original question, retrieved verses with source citations, and explicit instructions for grounded comparative reasoning 
+|
+|
+**
+5
+**
+|
+**
+LLM Generation
+**
+|
+ Google Gemma-2-2b-it processes the prompt and generates a comparative analysis, reasoning exclusively over the retrieved scripture passages 
+|
+|
+**
+6
+**
+|
+**
+Citation Validation
+**
+|
+ The response is checked to ensure claims reference specific retrieved verses, maintaining traceability and trustworthiness 
+|
+|
+**
+7
+**
+|
+**
+Response Display
+**
+|
+ The citation-backed answer and source references are displayed in the Streamlit interface for the user to read and verify 
+|
 ---
-
-## Supported Scriptures
-
-The current release of VerseSage supports the following scriptures:
-
-| Scripture | Language | Description | Significance |
-|-----------|----------|-------------|--------------|
-| **Bhagavad Gita** | Sanskrit | 700 verses of Lord Krishna's counsel to Arjuna on duty, righteousness, and the nature of the self | Central philosophical text of Hinduism; foundational to Indian ethics and metaphysics |
-| **Thirukkural** | Tamil | 1,330 couplets by Thiruvalluvar on virtue, wealth, and love — a secular ethical masterpiece | A cornerstone of Tamil literature; often called the "universal scripture" for its non-sectarian wisdom |
-
-> **Why these two?** The Bhagavad Gita and the Thirukkural represent two of India's most influential philosophical traditions — spanning Sanskrit and Tamil, Hindu philosophy and secular ethics — providing a strong foundation for cross-scripture comparative reasoning. The modular architecture is designed to incorporate additional scriptures (Upanishads, Ramayana, Guru Granth Sahib, Dhammapada, and more) in future releases.
-
+## 🛠️ Technology Stack
+|
+ Layer 
+|
+ Technology 
+|
+ Role 
+|
+|
+-------
+|
+------------
+|
+------
+|
+|
+**
+Language
+**
+|
+[
+Python
+](
+https://python.org
+)
+|
+ Core application logic, pipeline orchestration, and data processing 
+|
+|
+**
+Frontend
+**
+|
+[
+Streamlit
+](
+https://streamlit.io
+)
+|
+ Interactive web interface for natural-language question answering 
+|
+|
+**
+LLM
+**
+|
+[
+Google Gemma-2-2b-it
+](
+https://ai.google.dev/gemma
+)
+|
+ Comparative reasoning, synthesis, and grounded response generation 
+|
+|
+**
+Embeddings
+**
+|
+[
+Sentence Transformers
+](
+https://www.sbert.net/
+)
+|
+ Encodes queries and documents into dense semantic vectors (
+`paraphrase-multilingual-mpnet-base-v2`
+) 
+|
+|
+**
+Vector Database
+**
+|
+[
+ChromaDB
+](
+https://www.trychroma.com/
+)
+|
+ Persistent storage and high-speed semantic retrieval of verse embeddings 
+|
+|
+**
+ML Framework
+**
+|
+[
+PyTorch
+](
+https://pytorch.org/
+)
+|
+ Backend engine for model inference and tensor computation 
+|
+|
+**
+Transformers
+**
+|
+[
+Hugging Face Transformers
+](
+https://huggingface.co/docs/transformers
+)
+|
+ Model loading, tokenization, and inference pipeline for Gemma-2-2b-it 
+|
+|
+**
+Data Source
+**
+|
+[
+KaggleHub
+](
+https://www.kaggle.com/
+)
+|
+ Scripture dataset acquisition and management 
+|
 ---
-
-##  Tech Stack
-
-| Layer | Technology | Role |
-|-------|-----------|------|
-| **Frontend** | [Gradio](https://gradio.app) | Interactive web interface for query input and response display |
-| **Language** | [Python 3.10+](https://python.org) | Core application logic, pipeline orchestration, and data processing |
-| **LLM** | [Google Gemma-3-E4B-it](https://ai.google.dev/gemma) | Comparative reasoning, response generation, and philosophical synthesis |
-| **Embeddings** | [Sentence Transformers](https://www.sbert.net) | Dense vector encoding of queries and scripture passages for semantic search |
-| **Vector Database** | [ChromaDB](https://www.trychroma.com) | Persistent vector storage, indexing, and approximate nearest-neighbor retrieval |
-| **Deployment** | [Hugging Face Spaces](https://huggingface.co/spaces) | Cloud hosting and public access for the live demo |
-| **Version Control** | [Git & GitHub](https://github.com/roshanisingh16/verse-sage) | Source code management, collaboration, and issue tracking |
-
----
-
-## System Architecture
-
-```
-                            ┌──────────────────────┐
-                            │     User Question     │
-                            └──────────┬───────────┘
-                                       │
-                                       ▼
-                            ┌──────────────────────┐
-                            │   Gradio Interface    │
-                            │  (Web UI / API)       │
-                            └──────────┬───────────┘
-                                       │
-                                       ▼
-                            ┌──────────────────────┐
-                            │  Sentence Transformer │
-                            │  Query Embedding      │
-                            └──────────┬───────────┘
-                                       │
-                                       ▼
-                            ┌──────────────────────┐
-                            │   ChromaDB Vector     │
-                            │   Similarity Search   │
-                            └──────────┬───────────┘
-                                       │
-                                       ▼
-                            ┌──────────────────────┐
-                            │  Retrieve Top-K       │
-                            │  Verses + Metadata    │
-                            └──────────┬───────────┘
-                                       │
-                                       ▼
-                            ┌──────────────────────┐
-                            │  Prompt Construction  │
-                            │  (Query + Verses)     │
-                            └──────────┬───────────┘
-                                       │
-                                       ▼
-                            ┌──────────────────────┐
-                            │  Google Gemma-3-E4B-it   │
-                            │  Comparative Reasoning│
-                            └──────────┬───────────┘
-                                       │
-                                       ▼
-                            ┌──────────────────────┐
-                            │  Citation-Backed      │
-                            │  Response to User     │
-                            └──────────────────────┘
-```
-
-### Pipeline Stages Explained
-
-| Stage | Component | What Happens |
-|-------|-----------|--------------|
-| **1. Input** | Gradio Interface | The user types a natural-language question into the web UI |
-| **2. Embedding** | Sentence Transformers | The question is converted into a dense vector that captures its semantic meaning |
-| **3. Retrieval** | ChromaDB | The query vector is compared against all indexed scripture vectors; the top-K most similar passages are returned |
-| **4. Enrichment** | Metadata Engine | Each retrieved passage is annotated with its scripture name, chapter, verse number, and language |
-| **5. Prompt Assembly** | Pipeline Module | The original question and the retrieved, annotated passages are composed into a structured prompt |
-| **6. Reasoning** | Google Gemma-3-E4B-it | The LLM reads the prompt, performs comparative analysis across scriptures, and generates a synthesized response |
-| **7. Output** | Gradio Interface | The citation-backed response — with verse references — is displayed to the user |
-
----
-
-##  How It Works
-
-### Step 1 — User Question
-The user asks a question in natural language. No special syntax is required.
-
-> *Example: "What do Indian scriptures say about the importance of truth?"*
-
-### Step 2 — Query Embedding
-The question is passed through a **Sentence Transformer** model, producing a high-dimensional dense vector that encodes the semantic meaning of the query — not just its surface-level keywords.
-
-### Step 3 — Vector Retrieval
-The query embedding is sent to **ChromaDB**, which performs an approximate nearest-neighbor search across the pre-indexed scripture knowledge base. The top-K most semantically similar verses are retrieved along with their metadata.
-
-### Step 4 — Prompt Construction
-A structured prompt is assembled containing:
-- The original user question
-- The retrieved scripture passages (with full metadata)
-- Instructions for comparative analysis and citation formatting
-
-### Step 5 — Gemma-3-E4B-it Reasoning
-**Google Gemma-3-E4B-it** receives the prompt and performs:
-- **Comprehension** — understanding each retrieved passage in context
-- **Comparison** — identifying convergences and divergences across scriptures
-- **Synthesis** — generating a coherent, multi-perspective response
-
-### Step 6 — Citation Validation
-Every claim in the generated response is linked to a specific retrieved verse. The system ensures that no unsupported statements are included — if the retrieved passages do not support a claim, it is not made.
-
-### Step 7 — Final Response
-The user receives a well-structured answer that:
-- Addresses their question directly
-- Draws from multiple scriptures
-- Cites specific verses and chapters
-- Highlights cross-scripture insights
-
----
-
-## 🗄 Knowledge Base
-
-### Metadata Schema
-
-The current vector database contains embeddings for the **Bhagavad Gita** and the **Thirukkural**. Every verse in the VerseSage knowledge base is stored with rich metadata to enable precise, filterable retrieval:
-
-```json
-{
-  "id": "bg_2_47",
-  "text": "You have a right to perform your prescribed duties, but you are not entitled to the fruits of your actions.",
-  "metadata": {
-    "scripture": "Bhagavad Gita",
-    "chapter": 2,
-    "verse": 47,
-    "language": "Sanskrit",
-    "theme": ["duty", "detachment", "karma yoga"],
-    "speaker": "Lord Krishna",
-    "translation_source": "Swami Mukundananda"
-  }
-}
-```
-
-### Why Metadata Matters
-
-| Metadata Field | Retrieval Benefit |
-|---------------|-------------------|
-| `scripture` | Enables filtering by specific scripture or cross-scripture comparison |
-| `chapter` / `verse` | Provides exact citation for verification and scholarly reference |
-| `language` | Supports future multilingual retrieval and language-aware ranking |
-| `theme` | Enables thematic clustering and tag-based filtering |
-| `speaker` | Allows attribution-aware retrieval (e.g., "What did Lord Krishna say about…") |
-| `translation_source` | Ensures transparency and academic integrity of translations used |
-
-> **Metadata transforms raw text retrieval into structured, scholarly-grade knowledge retrieval.**
-
----
-
-## Why RAG?
-
-Large Language Models are powerful, but they have a fundamental limitation: **they can hallucinate**. When asked about scripture, a general-purpose LLM might fabricate verses, misattribute quotes, or invent references that do not exist. For a system dealing with sacred texts, this is unacceptable.
-
-**Retrieval-Augmented Generation (RAG)** solves this by ensuring the LLM only reasons over passages that were actually retrieved from the knowledge base.
-
-### Without RAG vs. With RAG
-
-```
-┌─────────────────────────────────────┐    ┌──────────────────────────────────────────┐
-│           WITHOUT RAG               │    │              WITH RAG                    │
-├─────────────────────────────────────┤    ├──────────────────────────────────────────┤
-│                                     │    │                                          │
-│  User Question                      │    │  User Question                           │
-│       │                             │    │       │                                  │
-│       ▼                             │    │       ▼                                  │
-│  LLM (trained knowledge only)       │    │  Embedding ──► Vector DB ──► Retrieved   │
-│       │                             │    │  Verses                                  │
-│       ▼                             │    │       │                                  │
-│  ⚠️  Response may contain:          │    │       ▼                                  │
-│  • Fabricated verses                │    │  LLM + Retrieved Verses                  │
-│  • Wrong attributions               │    │       │                                  │
-│  • Invented references              │    │       ▼                                  │
-│  • No citations                     │    │  ✅ Response contains:                   │
-│  • No way to verify                 │    │  • Real verses only                      │
-│                                     │    │  • Correct attributions                  │
-│  ❌ Untrustworthy                   │    │  • Verifiable references                 │
-│                                     │    │  • Full citations                        │
-│                                     │    │  • Auditable and transparent             │
-│                                     │    │                                          │
-│                                     │    │  ✅ Trustworthy                          │
-└─────────────────────────────────────┘    └──────────────────────────────────────────┘
-```
-
-| Dimension | Without RAG | With RAG (VerseSage) |
-|-----------|-------------|----------------------|
-| **Hallucination** | High risk — LLM may invent verses | Eliminated — only retrieved verses are used |
-| **Grounding** | None — responses float in parametric memory | Full — every response is anchored to real passages |
-| **Citations** | Absent or fabricated | Authentic — traceable to specific verse, chapter, and scripture |
-| **Transparency** | Black box | Auditable — users can verify every claim |
-| **Trustworthiness** | Low — no verification possible | High — scholarly-grade accuracy and accountability |
-
----
-
-##  Project Structure
-
+<details>
+<summary><h2> Folder Structure</h2></summary>
 ```
 verse-sage/
-├── app.py                  # Application entry point — launches the Gradio interface
-├── data/                   # Scripture datasets (JSON/CSV) with verse text and metadata
-├── embeddings/             # Sentence Transformer embedding logic and model configuration
-├── vectordb/               # ChromaDB initialization, indexing, and query interface
-├── llm/                    # Google Gemma-3-E4B-it integration, prompt templates, and inference
-├── pipeline/               # End-to-end RAG pipeline orchestration (retrieval → generation)
-├── docs/                   # Project documentation, design decisions, and API reference
-├── assets/                 # Images, banners, diagrams, and visual assets
-├── requirements.txt        # Python dependency manifest
-└── README.md               # This file
+├── app.py                     # Main entry point — launches Streamlit UI and orchestrates the RAG pipeline
+├── data/                      # Raw and preprocessed scripture text corpora
+│   ├── bhagavad_gita/         # Bhagavad Gita verses and metadata
+│   └── thirukkural/           # Thirukkural couplets and metadata
+├── embeddings/                # Embedding model configurations and cached vector representations
+├── vectordb/                  # ChromaDB persistent storage for verse vector collections
+├── pipeline/                  # RAG orchestration: embed → retrieve → generate
+├── assets/                    # Images, logos, diagrams, and visual assets
+│   └── screenshots/           # Application screenshots for documentation
+├── requirements.txt           # Python dependency manifest
+├── LICENSE                    # MIT License
+└── README.md                  # Project documentation (this file)
 ```
-
-| Directory / File | Purpose |
-|-----------------|---------|
-| `app.py` | Main entry point — initializes components and launches the Gradio web server |
-| `data/` | Stores pre-processed scripture data with verse text, translations, and structured metadata |
-| `embeddings/` | Handles loading the Sentence Transformer model and encoding text into dense vectors |
-| `vectordb/` | Manages the ChromaDB collection — indexing scripture vectors, persisting the database, and running similarity queries |
-| `llm/` | Contains the Google Gemma-3-E4B-it integration — model loading, prompt template construction, and inference logic |
-| `pipeline/` | Orchestrates the full RAG pipeline — from receiving a query to returning a citation-backed response |
-| `docs/` | Supplementary documentation including architecture diagrams, design rationale, and API docs |
-| `assets/` | Static assets — banner images, architecture diagrams, and screenshots for the README |
-| `requirements.txt` | Lists all Python dependencies with pinned versions for reproducible environments |
-
+|
+ Directory / File 
+|
+ Purpose 
+|
+|
+------------------
+|
+---------
+|
+|
+`app.py`
+|
+ Application entry point; initializes the Streamlit interface and connects all pipeline stages 
+|
+|
+`data/`
+|
+ Stores scripture files (Bhagavad Gita and Thirukkural) in structured formats ready for embedding 
+|
+|
+`embeddings/`
+|
+ Contains embedding model configurations and pre-computed vector caches 
+|
+|
+`vectordb/`
+|
+ Houses ChromaDB collections with persistent verse embeddings and metadata 
+|
+|
+`pipeline/`
+|
+ Orchestrates the full RAG workflow — from query embedding through retrieval to response generation 
+|
+|
+`requirements.txt`
+|
+ Declares all Python dependencies for reproducible installs 
+|
+</details>
 ---
-
-## ⚙ Installation
-
+<details>
+<summary><h2> Installation Guide</h2></summary>
 ### Prerequisites
-
-- Python 3.10 or higher
-- Git
-- pip
-
-### 1. Clone the Repository
-
+- **Python** 3.10 or higher
+- **Git**
+- **pip**
+- A machine with sufficient memory for Gemma-2-2b-it model inference (GPU recommended)
+### Step 1 — Clone the Repository
 ```bash
-git clone https://github.com/roshanisingh16/verse-sage.git
+git clone https://github.com/<your-username>/verse-sage.git
 cd verse-sage
 ```
-
-### 2. Create a Virtual Environment
-
+### Step 2 — Create a Virtual Environment
 ```bash
 python -m venv venv
-
-# On Linux / macOS
+```
+Activate it:
+```bash
+# Linux / macOS
 source venv/bin/activate
-
-# On Windows
+# Windows
 venv\Scripts\activate
 ```
-
-### 3. Install Dependencies
-
+### Step 3 — Install Dependencies
 ```bash
 pip install -r requirements.txt
 ```
-
-### 4. Run the Application
-
+> [!TIP]
+> If you have a CUDA-capable GPU, install the GPU version of PyTorch for significantly faster inference. See the [PyTorch installation guide](https://pytorch.org/get-started/locally/).
+### Step 4 — Download Scripture Data
+Ensure the scripture datasets (Bhagavad Gita and Thirukkural) are placed in the `data/` directory. KaggleHub is used for dataset acquisition — refer to the project's data loading scripts for details.
+</details>
+---
+##  Running the Project
 ```bash
-python app.py
+streamlit run app.py
 ```
-
-The Gradio interface will launch at `http://localhost:7860`. Open this URL in your browser to start asking questions.
-
+The Streamlit interface will launch at **`http://localhost:8501`**. Open this URL in your browser to begin exploring cross-scripture wisdom.
+> [!TIP]
+> Ensure your virtual environment is activated and all dependencies are installed before running. On first launch, the embedding model and Gemma-2-2b-it weights may need to download, which requires an internet connection.
 ---
-
-##  Usage
-
-1. **Open the application** — Navigate to `http://localhost:7860` in your browser (or visit the Hugging Face Spaces deployment).
-2. **Type your question** — Ask any question about the Bhagavad Gita, the Thirukkural, or comparative topics in natural language. No special syntax or keywords required.
-3. **Submit** — Click the submit button or press Enter.
-4. **Read the response** — VerseSage will return a comparative answer drawing from the Bhagavad Gita and the Thirukkural, with each claim backed by specific verse citations.
-5. **Explore further** — Ask follow-up questions, compare specific teachings, or dive deeper into a particular topic.
-
-> **Tip:** The more specific your question, the more focused and insightful the response. Instead of *"Tell me about karma"*, try *"How do the Bhagavad Gita and the Thirukkural differ in their understanding of karma and duty?"*
-
----
-
-##  Example Questions
-
-Here are meaningful questions you can ask VerseSage to explore cross-scripture wisdom from the Bhagavad Gita and the Thirukkural:
-
-| # | Question |
-|---|----------|
-| 1 | What do the Bhagavad Gita and the Thirukkural say about controlling anger and cultivating patience? |
-| 2 | How do the Bhagavad Gita and the Thirukkural differ in their teachings on detachment and renunciation? |
-| 3 | What is the concept of dharma in the Bhagavad Gita, and how does it compare to virtue in the Thirukkural? |
-| 4 | How does the Thirukkural define a virtuous life, and are there parallels in the Bhagavad Gita? |
-| 5 | What teachings on compassion and kindness are shared between the Bhagavad Gita and the Thirukkural? |
-| 6 | What do the Bhagavad Gita and the Thirukkural say about the importance of truthfulness and integrity? |
-| 7 | How is the concept of karma and duty explained in the Bhagavad Gita compared to the Thirukkural? |
-| 8 | What guidance do the Bhagavad Gita and the Thirukkural offer on self-discipline and inner peace? |
-| 9 | How do the Bhagavad Gita and the Thirukkural address the relationship between wealth, ethics, and spiritual growth? |
-| 10 | What do the Bhagavad Gita and the Thirukkural teach about leadership and righteous conduct? |
-| 11 | How do the Bhagavad Gita and the Thirukkural describe the qualities of an ideal person? |
-| 12 | What perspectives on love, friendship, and human relationships appear in the Bhagavad Gita and the Thirukkural? |
-
----
-
-##  Novelty
-
-VerseSage is not just another scripture search tool. It introduces several innovations that set it apart:
-
-###  Cross-Scripture Comparative Reasoning
-No existing system performs **automated comparative analysis** across Indian scriptures in a single query. VerseSage currently retrieves relevant verses from the Bhagavad Gita and the Thirukkural — and uses Google Gemma-3-E4B-it to synthesize insights across these two foundational traditions, with a modular architecture ready to incorporate additional scriptures.
-
-###  Citation-Backed AI
-Every claim in VerseSage's response is traceable to a specific verse, chapter, and scripture. Unlike general-purpose chatbots, **nothing is fabricated** — the RAG pipeline ensures that the LLM only reasons over real, retrieved passages.
-
-### Metadata-Driven Retrieval
-Rich metadata (scripture, chapter, verse, language, theme, speaker) enables **structured, filterable retrieval** that goes far beyond naive text similarity.
-
-###  Explainable AI
-Users can see *which* verses informed the response and *from which* scriptures they were drawn — making the system transparent and auditable.
-
-### Semantic Understanding
-Sentence Transformer embeddings capture the deep semantic meaning of both queries and scripture passages, enabling retrieval that **transcends language and keyword barriers**.
-
-### Cultural Knowledge Preservation
-VerseSage digitizes, indexes, and makes searchable India's vast spiritual heritage — contributing to the **preservation and accessibility** of knowledge that has guided civilizations for millennia.
-
----
-
-## Applications
-
-| Domain | Application |
-|--------|-------------|
-| **Education** | Interactive teaching aid for courses on Indian philosophy, comparative religion, and ethics |
-| **Research** | Accelerates scholarly research by enabling instant cross-scripture semantic search and comparison |
-| **Comparative Religion** | Facilitates interfaith dialogue by surfacing shared values and distinct perspectives across traditions |
-| **Spiritual Learning** | Provides accessible, citation-backed guidance for personal spiritual exploration and study |
-| **Knowledge Discovery** | Reveals unexpected connections and thematic patterns across scriptures that manual study might miss |
-| **Cultural Preservation** | Digitizes and indexes India's spiritual heritage, ensuring it remains accessible for future generations |
-
----
-
-## 📈 Future Roadmap
-
-|  Feature | Description |
-|---------|-------------|
-|  **Expand Scripture Knowledge Base** | Integrate additional Indian scriptures including the **Upanishads**, **Ramayana**, **Guru Granth Sahib**, **Dhammapada**, and other classical Indian texts. The modular architecture is already designed to support easy expansion |
-|  **Voice Interaction** | Ask questions and receive answers via speech — enabling hands-free, accessible scripture exploration |
-|  **Regional Language Support** | Hindi, Tamil, Punjabi, Pali, and other Indian language interfaces and retrieval |
-|  **Even More Scriptures** | Further expand to include the Vedas, Mahabharata, Yoga Sutras, Jain Agamas, and more |
-|  **Mobile App** | Native Android and iOS applications for on-the-go scripture exploration |
-|  **Personalized Recommendations** | AI-driven suggestions based on user interests, reading history, and spiritual goals |
-|  **Conversation History** | Persistent chat sessions with the ability to revisit and continue past explorations |
-|  **Scholar Commentaries** | Integration of traditional commentaries (Shankaracharya, Ramanujacharya, etc.) alongside verse retrieval |
-|  **Citation Visualization** | Interactive visual maps showing which scriptures and verses informed each part of the response |
-
----
-
-## Contributing
-
-Contributions are welcome and appreciated! Whether you're fixing a bug, adding a scripture, improving documentation, or proposing a new feature — every contribution makes VerseSage better.
-
-### How to Contribute
-
-1. **Fork** the repository
-
-   ```bash
-   git clone https://github.com/your-username/verse-sage.git
-   ```
-
-2. **Create a feature branch**
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-3. **Make your changes** — follow existing code style and conventions
-
-4. **Commit** with a clear, descriptive message
-
-   ```bash
-   git commit -m "feat: add Yoga Sutras to knowledge base"
-   ```
-
-5. **Push** to your fork
-
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-6. **Open a Pull Request** — describe your changes, link any related issues, and request a review
-
-### Contribution Guidelines
-
-- Write clear, well-documented code
-- Add tests for new functionality where applicable
-- Keep PRs focused — one feature or fix per PR
-- Be respectful and constructive in all discussions
-
----
-
-## License
-
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
+##  Example Usage
+### Sample Questions
+|
+ Question 
+|
+ What It Explores 
+|
+|
+----------
+|
+-----------------
+|
+|
+*
+"What is karma according to the Bhagavad Gita?"
+*
+|
+ Single-scripture deep dive into a foundational concept 
+|
+|
+*
+"What does Thirukkural teach about kindness?"
+*
+|
+ Thirukkural's perspective on a universal virtue 
+|
+|
+*
+"Compare duty in Bhagavad Gita and Thirukkural"
+*
+|
+ Cross-scripture comparative analysis of dharma and duty 
+|
+|
+*
+"How do Bhagavad Gita and Thirukkural define leadership?"
+*
+|
+ Leadership ideals across two traditions 
+|
+|
+*
+"What is selfless action in Bhagavad Gita?"
+*
+|
+ Nishkama karma — action without attachment to results 
+|
+|
+*
+"Compare the teachings on discipline in Bhagavad Gita and Thirukkural"
+*
+|
+ Self-discipline as understood in Hindu and Tamil ethical traditions 
+|
+### Example Workflow
 ```
-MIT License
-
-Copyright (c) 2025 VerseSage Contributors
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+    Ask:      "Compare duty in the Bhagavad Gita and Thirukkural"
+                  │
+                  ▼
+    Embed:    Query encoded into a dense semantic vector
+                  │
+                  ▼
+    Retrieve: Top relevant verses retrieved from ChromaDB
+                  (Bhagavad Gita + Thirukkural)
+                  │
+                  ▼
+    Generate: Gemma-2-2b-it synthesizes a comparative analysis
+                  using ONLY retrieved passages
+                  │
+                  ▼
+    Cite:     Every claim is backed by scripture and verse reference
 ```
+---
+##  RAG Pipeline Explanation
+### Why RAG?
+Standard large language models generate responses from statistical patterns learned during training. When asked about specific scripture verses, they may:
+- ❌ **Fabricate** non-existent verses that sound authentic
+- ❌ **Misattribute** quotes to the wrong scripture or author
+- ❌ **Blend** concepts inaccurately across traditions
+- ❌ **Present** plausible but theologically incorrect interpretations
+**When dealing with sacred texts, inaccuracy is not an option.**
+### How VerseSage's RAG Pipeline Works
+**Retrieval-Augmented Generation** solves this by retrieving real documents before generating a response. The model never answers from memory alone — it reasons over evidence.
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                      ❌  Without RAG                            │
+│                                                                 │
+│  User Question ──► LLM (training memory only)                   │
+│                        │                                        │
+│                        ▼                                        │
+│                   ⚠️  Response may hallucinate                   │
+│                   ⚠️  No citations provided                      │
+│                   ⚠️  Claims cannot be verified                   │
+└─────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────┐
+│                      ✅  With RAG (VerseSage)                   │
+│                                                                 │
+│  User Question ──► Retrieve real verses from ChromaDB           │
+│                        │                                        │
+│                        ▼                                        │
+│                   LLM + Retrieved Context                       │
+│                        │                                        │
+│                        ▼                                        │
+│                   ✅ Grounded in authentic scripture             │
+│                   ✅ Full citations included                     │
+│                   ✅ Every claim independently verifiable         │
+└─────────────────────────────────────────────────────────────────┘
+```
+### Embedding Model
+VerseSage uses **`sentence-transformers/paraphrase-multilingual-mpnet-base-v2`** for both query and document encoding. This model was selected for its:
+|
+ Property 
+|
+ Benefit 
+|
+|
+----------
+|
+---------
+|
+|
+**
+Multilingual capability
+**
+|
+ Supports 50+ languages — critical for Sanskrit and Tamil scriptural content 
+|
+|
+**
+Semantic paraphrase detection
+**
+|
+ Captures meaning equivalence even when surface-level wording differs significantly 
+|
+|
+**
+Dense vector representations
+**
+|
+ Enables efficient cosine similarity search in ChromaDB for real-time retrieval 
+|
+---
+##  Citation Validation
+Citation validation is a **core design principle** of VerseSage, not an afterthought. The system ensures trustworthiness through a multi-layered approach:
+|
+ Layer 
+|
+ Mechanism 
+|
+ Purpose 
+|
+|
+-------
+|
+-----------
+|
+---------
+|
+|
+**
+Retrieval Grounding
+**
+|
+ Responses are generated using only retrieved passages as context 
+|
+ Prevents the model from drawing on training memory for factual claims 
+|
+|
+**
+Source Metadata
+**
+|
+ Every retrieved verse carries structured metadata (scripture name, chapter/section, verse number) 
+|
+ Enables precise citation in generated responses 
+|
+|
+**
+Prompt Constraints
+**
+|
+ The generation prompt explicitly instructs the model to cite sources and avoid unsupported claims 
+|
+ Reinforces grounded behavior at the instruction level 
+|
+|
+**
+Source Display
+**
+|
+ Retrieved passages and their sources are displayed alongside the response in the UI 
+|
+ Users can independently verify every citation against the original text 
+|
+> [!NOTE]
+> Citation validation ensures that VerseSage produces **verifiable** answers. If a verse cannot be traced to the retrieved context, users can identify the discrepancy through the displayed source references.
+---
+## 🔮 Future Scope
+The following enhancements are planned for future development:
+|
+ Area 
+|
+ Description 
+|
+ Status 
+|
+|
+------
+|
+-------------
+|
+--------
+|
+|
+ 📖 
+**
+More Indian Scriptures
+**
+|
+ Expand the knowledge base to include additional texts such as the Upanishads, Dhammapada, Guru Granth Sahib, and Ramayana 
+|
+ 🔲 Planned 
+|
+|
+ 🌐 
+**
+Better Multilingual Support
+**
+|
+ Enhanced support for Hindi, Tamil, and other Indian regional languages in both queries and responses 
+|
+ 🔲 Planned 
+|
+|
+ 🔊 
+**
+Voice Interaction
+**
+|
+ Spoken questions and audio responses for hands-free, accessible exploration 
+|
+ 🔲 Planned 
+|
+|
+ 📱 
+**
+Mobile Interface
+**
+|
+ Responsive mobile application for on-the-go access to scriptural wisdom 
+|
+ 🔲 Planned 
+|
+|
+ 🎯 
+**
+Advanced Retrieval
+**
+|
+ Improved retrieval strategies including re-ranking, hybrid search, and metadata-aware filtering 
+|
+ 🔲 Planned 
+|
+|
+ 🔍 
+**
+Improved Citation Verification
+**
+|
+ Automated verification pipeline to programmatically validate citations against the source corpus 
+|
+ 🔲 Planned 
+|
+> [!NOTE]
+> The items listed above represent future directions. The current implementation supports **Bhagavad Gita** and **Thirukkural** only.
 
 ---
 
-## Acknowledgements
-
-VerseSage stands on the shoulders of remarkable open-source projects and communities:
-
-- **[Google Gemma](https://ai.google.dev/gemma)** — for Gemma-3-E4B-it, the powerful and efficient language model at the heart of VerseSage's reasoning engine
-- **[Hugging Face](https://huggingface.co)** — for the Transformers ecosystem, model hosting, and Spaces deployment platform
-- **[ChromaDB](https://www.trychroma.com)** — for the fast, developer-friendly vector database that powers our semantic search
-- **[Sentence Transformers](https://www.sbert.net)** — for state-of-the-art sentence embedding models that make semantic retrieval possible
-- **[Gradio](https://gradio.app)** — for the elegant, rapid-prototyping UI framework
-- **The Open-Source Community** — for the countless libraries, tools, and ideas that make projects like this possible
-- **Google Developers Group** — for fostering developer communities and supporting AI innovation in India
-- **Gemma for Bharat Hackathon** — for creating the platform and inspiration to build AI solutions rooted in India's cultural heritage
-
+<div align="center">
+|
+ Screen 
+|
+ Preview 
+|
+|
+--------
+|
+---------
+|
+|
+**
+Home / Hero
+**
+|
+*
+!
+[
+Home Screen
+](
+assets/screenshots/home.png
+)
+*
+|
+|
+**
+Question Input
+**
+|
+*
+!
+[
+Question Input
+](
+assets/screenshots/question.png
+)
+*
+|
+|
+**
+AI Response with Citations
+**
+|
+*
+!
+[
+AI Response
+](
+assets/screenshots/response.png
+)
+*
+|
+|
+**
+Source References
+**
+|
+*
+!
+[
+Sources
+](
+assets/screenshots/sources.png
+)
+*
+|
+> [!TIP]
+> Add screenshots by placing images in `assets/screenshots/` and updating the paths above.
+</div>
 ---
-## Why VerseSage?
-
-*India's spiritual texts have guided billions of people across millennia — offering profound insights on consciousness, ethics, duty, compassion, and the nature of existence. Yet this wisdom has remained locked in individual texts, accessible only to those with the linguistic expertise and scholarly patience to navigate thousands of verses across multiple traditions.*
-
-*VerseSage changes this.*
-
-*By combining the semantic power of modern AI embeddings, the precision of Retrieval-Augmented Generation, and the reasoning capabilities of Google Gemma-3-E4B-it, VerseSage makes it possible for anyone — a student, a researcher, a seeker — to ask a question in plain language and receive a thoughtful, comparative, citation-backed answer. The current release draws from the Bhagavad Gita and the Thirukkural, with a modular architecture ready to embrace more of India's scriptural heritage.*
-
-*This is not about replacing human wisdom with artificial intelligence. It is about using AI as a bridge — connecting seekers to the timeless teachings that have always been there, waiting to be discovered.*
-
-**VerseSage: Where ancient wisdom meets modern intelligence.** 🙏
-
+##  Why VerseSage?
+<div align="center">
+*India's scriptures have carried humanity's most profound insights for thousands of years — on duty, compassion, consciousness, and the art of living a meaningful life. Yet this wisdom remains fragmented across texts, languages, and traditions — difficult to search, harder to compare, and nearly impossible to explore without deep domain expertise.*
+***VerseSage changes that.***
+</div>
+|
+ Principle 
+|
+ How VerseSage Delivers 
+|
+|
+-----------
+|
+----------------------
+|
+|
+**
+Accessibility
+**
+|
+ Ask questions in plain language — no Sanskrit, Tamil, or domain expertise required 
+|
+|
+**
+Trustworthiness
+**
+|
+ Every answer is grounded in retrieved scripture passages, not generated from model memory 
+|
+|
+**
+Transparency
+**
+|
+ Users can see exactly which verses were retrieved and how they informed the response 
+|
+|
+**
+Comparability
+**
+|
+ Side-by-side analysis reveals how Bhagavad Gita and Thirukkural approach shared human questions 
+|
+|
+**
+Verifiability
+**
+|
+ Full citations enable users to cross-reference every claim against the original text 
+|
+> *"VerseSage does not guess. It retrieves, reasons, and cites."*
 ---
-
-Built with ❤️ for the Google Gemma for Bharat Hackathon
-
-
-[![Star this repo](https://img.shields.io/github/stars/roshanisingh16/verse-sage?style=social)](https://github.com/roshanisingh16/verse-sage)
-[![Fork this repo](https://img.shields.io/github/forks/roshanisingh16/verse-sage?style=social)](https://github.com/roshanisingh16/verse-sage/fork)
-
+##  Challenges Faced
+|
+ Challenge 
+|
+ How We Addressed It 
+|
+|
+-----------
+|
+-------------------
+|
+|
+**
+Scripture data preparation
+**
+|
+ Cleaning and structuring ancient texts with consistent metadata required careful curation and validation to preserve accuracy 
+|
+|
+**
+Multilingual embedding quality
+**
+|
+ Selected 
+`paraphrase-multilingual-mpnet-base-v2`
+ for its cross-lingual semantic understanding across Sanskrit and Tamil content 
+|
+|
+**
+Hallucination prevention
+**
+|
+ Designed prompt engineering to strictly constrain the model to reason only over retrieved passages, with explicit instructions against unsupported claims 
+|
+|
+**
+Model resource constraints
+**
+|
+ Optimized the inference pipeline for Gemma-2-2b-it to balance response quality with computational feasibility 
+|
+|
+**
+Citation accuracy
+**
+|
+ Built structured metadata into every indexed verse so citations trace back to specific scripture, chapter, and verse locations 
+|
+|
+**
+Cross-scripture semantic alignment
+**
+|
+ Ensured semantically similar concepts across different scriptures and languages are retrievable through a shared multilingual embedding space 
+|
+---
+##  Learnings
+- **RAG transforms LLM reliability** — Retrieval-Augmented Generation is essential for any domain where factual accuracy matters. Grounding responses in retrieved evidence dramatically reduces hallucination.
+- **Embedding model selection is critical** — The choice of `paraphrase-multilingual-mpnet-base-v2` directly impacted retrieval quality across Sanskrit and Tamil content. A monolingual model would have failed.
+- **Prompt engineering is a discipline** — Crafting prompts that produce grounded, comparative, and well-cited responses required iterative refinement and careful constraint design.
+- **Sacred texts demand higher standards** — Working with scripture content reinforced that accuracy, respectfulness, and citation are non-negotiable in AI systems handling revered texts.
+- **Vector databases enable real-time semantic search** — ChromaDB's millisecond-latency cosine similarity search makes real-time RAG feasible even with substantial verse corpora.
+- **Small models can be mighty** — Gemma-2-2b-it, when paired with strong retrieval and prompt engineering, produces nuanced and grounded responses on domain-specific tasks.
+---
+##  Acknowledgements
+|
+|
+ Acknowledgement 
+|
+|
+---
+|
+---
+|
+|
+ 🤖 
+|
+**
+[
+Google Gemma
+](
+https://ai.google.dev/gemma
+)
+**
+ — For the powerful and efficient Gemma-2-2b-it model that drives comparative reasoning 
+|
+|
+ 🇮🇳 
+|
+**
+[
+Google
+](
+https://ai.google.dev/
+)
+**
+ — For fostering AI innovation and supporting developer communities through initiatives and hackathons 
+|
+|
+ 🗄️ 
+|
+**
+[
+ChromaDB
+](
+https://www.trychroma.com/
+)
+**
+ — For the high-performance, developer-friendly open-source vector database 
+|
+|
+ 🔢 
+|
+**
+[
+Sentence Transformers
+](
+https://www.sbert.net/
+)
+**
+ — For state-of-the-art multilingual semantic embedding models 
+|
+|
+ 🤗 
+|
+**
+[
+Hugging Face
+](
+https://huggingface.co/
+)
+**
+ — For hosting models, providing the Transformers library, and advancing open-source AI 
+|
+|
+ 🔥 
+|
+**
+[
+PyTorch
+](
+https://pytorch.org/
+)
+**
+ — For the foundational deep learning framework powering model inference 
+|
+|
+ 🖥️ 
+|
+**
+[
+Streamlit
+](
+https://streamlit.io/
+)
+**
+ — For the elegant framework that makes building interactive data applications effortless 
+|
+|
+ 📊 
+|
+**
+[
+Kaggle
+](
+https://www.kaggle.com/
+)
+**
+ — For hosting scripture datasets and enabling data-driven research 
+|
+|
+ ❤️ 
+|
+**
+Open-Source Community
+**
+ — For the countless libraries, tools, and resources that make projects like VerseSage possible 
+|
+---
+## 📄 License
+This project is licensed under the **MIT License**.
+You are free to use, modify, and distribute this software for personal, educational, and commercial purposes with proper attribution. See the [LICENSE](LICENSE) file for full details.
+---
+<div align="center">
+**Built with ❤️ for India's timeless wisdom**
+ Star this repository if VerseSage resonates with you!
+[⬆ Back to Top](#️-versesage)
+</div>
