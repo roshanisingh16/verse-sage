@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+#  khushi's extra
+ verse.json
+ translation.json
+ thirukkural_raw.json
+ detail.json
